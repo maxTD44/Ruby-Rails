@@ -1,0 +1,15 @@
+<h1>Recipes tagged "<%= @tag.name %>"</h1>
+
+</br>
+
+<% @tag.recipes.each do |recipe| %>
+  <%= recipe.title %> <a href="/recipes/<%= recipe.id %>"> View Recipe </a> </br>
+<% end %>
+</br>
+
+<%= link_to "Back to all recipes", recipes_path %> </br>
+
+
+</br>
+<%= link_to 'See all tags', edit_tag_path(@tag) %> |
+<%= link_to 'Back', tags_path %>

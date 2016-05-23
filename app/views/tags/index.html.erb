@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Walter's Tags</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tags.each do |tag| %>
+      <tr>
+        <td><a href="/tags/<%= tag.id %>"><%= tag.name %></a></td>
+        <!-- <td><%= link_to 'Show', tag %></td> Delete this later-->
+        <!-- <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
+        <td><%= link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        We should borrow this functionality and make tags editable from the new/edit recipes page-->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<p><a href="/recipes">Back to recipes</a></p>
+<!-- <%= link_to 'New Tag', new_tag_path %> -->

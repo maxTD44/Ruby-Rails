@@ -1,0 +1,40 @@
+<div class="header">
+  <h1>Jesse, We Have to Cook</h1>
+  <h2>Walter White's Recipes</h2>
+</div>
+
+<p><strong><a href="/tags">Find recipes by tag</a></strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Rating
+</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @recipes.each do |recipe| %>
+      <tr>
+        <td><%= recipe.title %></td>
+        <td><%= recipe.author %></td>
+        <td><% if !recipe.avg_rating.nan? %>
+              <%= recipe.avg_rating %>
+            <% else %>
+              <%= "Not yet rated" %>
+            <% end %>
+          </td>
+        <td><%= link_to 'Show', recipe %>
+        <%= link_to 'Edit', edit_recipe_path(recipe) %>
+        <%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Recipe', new_recipe_path %>

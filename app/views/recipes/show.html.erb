@@ -1,0 +1,66 @@
+<p>
+  <strong>Title:</strong>
+  <%= @recipe.title %>
+</p>
+<p><%= image_tag @recipe.image.url(:large) %></p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @recipe.author %>
+</p>
+
+<p>
+  <strong>Ingredients:</strong>
+  <%= @recipe.ingredients %>
+</p>
+
+<p>
+  <strong>Instructions:</strong>
+  <%= @recipe.instructions %>
+</p>
+
+<p>
+  <strong>Tags:</strong>
+  <% @recipe.tags.each do |tag| %>
+    <%= tag.name %>
+  <% end%>
+</p>
+
+<form action="/recipes/<%=@recipe.id%>/new_tag/" method= "post">
+  <div class= "field">
+    <label for="tag_name">Tag Name</label><br>
+    <input type="text" name="tag[name]" id="tag_name"/>
+  </div>
+  <div class ="actions">
+    <input type ="submit" name="commit" value="Create Tag"/>
+  </div>
+</form>
+</br></br></br>
+
+
+<h3>Rating:
+  <% if !@recipe.avg_rating.nan? %>
+        <%= @recipe.avg_rating %>
+      <% else %>
+        <%= "Not yet rated" %>
+      <% end %>
+       stars
+    </h3>
+
+
+
+<h1>Rate this Recipe:</h1>
+<form action="/recipes/<%=@recipe.id%>/" method="post">
+  <select name="rating">
+    <option value="" selected disabled>Please select an option...</option>
+    <option value="1">1 star</option>
+    <option value="2">2 stars</option>
+    <option value="3">3 stars</option>
+    <option value="4">4 stars</option>
+    <option value="5">5 stars</option>
+  </select>
+  <input type="submit" name="commit" value="Add Rating"/>
+</form>
+
+<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+<%= link_to 'Back', recipes_path %>
